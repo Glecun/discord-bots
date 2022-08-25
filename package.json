@@ -15,7 +15,7 @@
     "sodium-native": "^3.4.1"
   },
   "scripts": {
-    "start": "tsc; node -r dotenv/config index.js;"
+    "start": "./node_modules/.bin/tsc; node -r dotenv/config index.js;"
   },
   "author": "",
   "license": "ISC",
