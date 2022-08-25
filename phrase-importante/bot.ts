@@ -14,7 +14,6 @@ client.on('ready', function () {
 })
 
 client.on('messageCreate', async msg => {
-  console.log(msg)
   if (msg.content === '!phrase') {
     const { phrase } = await fetch('http://phraseimportante.fr/getPhrase.php').then(response => response.json());
     msg.channel.send(phrase);
