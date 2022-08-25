@@ -15,6 +15,9 @@
     "sodium-native": "^3.4.1"
   },
   "scripts": {
+    "tsc": "tsc",
+    "postinstall": "npm run tsc",
+    "start-heroku": "node -r dotenv/config index.js;",
     "start": "./node_modules/.bin/tsc; node -r dotenv/config index.js;"
   },
   "author": "",
