@@ -50,7 +50,7 @@ export class Members {
     static readonly members = [
         {id: "260843363085975552", helloSoundPath: "zuldass.mp3"},
         {id: "164419663139307520", helloSoundPath: "grewa.mp3"},
-        {id: "209659433893101568", helloSoundPath: "gronkoh.mp3"},
+        {id: "162912588907282441", helloSoundPath: "gronkoh.mp3"},
     ]
 
     static addHelloSoundPathIfKnown(member: Member): Member {
