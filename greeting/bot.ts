@@ -15,19 +15,20 @@ client.on('ready', function () {
     console.log("Bot greeting ON !")
 })
 
-client.on('voiceStateUpdate', async (_: any, newMember: VoiceState) => {
-    let memberJoined = Member.fromVoiceState(newMember)
-    if (!memberJoined.hasChannelId()) {
+client.on('voiceStateUpdate', async (oldMember: VoiceState, newMember: VoiceState) => {
+    let memberJustBefore = Member.fromVoiceState(oldMember)
+    let member = Member.fromVoiceState(newMember)
+    if (memberJustBefore.IsInAChannel() || !member.IsInAChannel()) {
         return
     }
 
-    memberJoined = Members.addHelloSoundPathIfKnown(memberJoined);
-    if (!memberJoined.hasHelloSoundPath()) {
+    member = Members.addHelloSoundPathIfKnown(member);
+    if (!member.hasHelloSoundPath()) {
         return
     }
 
-    const connection = join(memberJoined.channel!);
-    playAudio(connection, memberJoined.helloSoundPath!);
+    const connection = join(member.channel!);
+    playAudio(connection, member.helloSoundPath!);
 });
 
 client.login(process.env.GREETING_BOT_TOKEN);

@@ -33,7 +33,7 @@ export class Member {
         return new Member(voiceState.id, channel)
     }
 
-    hasChannelId() {
+    IsInAChannel() {
         return !!this.channel
     }
 
