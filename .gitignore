@@ -1,3 +1,6 @@
+greeting/*.js
+phrase-importante/*.js
+
 # Logs
 logs
 *.log
