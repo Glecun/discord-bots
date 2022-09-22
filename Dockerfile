@@ -16,5 +16,6 @@ COPY . .
 
 RUN apk add --no-cache python3 py3-pip
 
+RUN rm package-lock.json
 RUN npm install
 RUN npm run start-raspberry
