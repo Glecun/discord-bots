@@ -13,7 +13,7 @@ jobs:
 
       - run: npm install
 
-      - name: Restart Node Server
+      - name: Rebuild Docker image on server & Run
         uses: appleboy/ssh-action@master
         env:
           PHRASE_IMPORTANTE_BOT_TOKEN: ${{ secrets.PHRASE_IMPORTANTE_BOT_TOKEN }}
