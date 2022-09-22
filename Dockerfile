@@ -14,6 +14,7 @@ ENV B4_BAMBOU_GENERAL_CHANNEL_KEY=$B4_BAMBOU_GENERAL_CHANNEL_KEY_ARG
 # Copy all local files into the image.
 COPY . .
 
+RUN apk --no-cache add build-base
 RUN apk add --no-cache python3 py3-pip
 
 RUN rm package-lock.json
