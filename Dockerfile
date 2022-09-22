@@ -9,7 +9,7 @@ CMD ["npm", "run", "start-raspberry"]
 COPY package.json .
 RUN apk --no-cache add build-base
 RUN apk add --no-cache python3 py3-pip
-RUN npm install
+RUN npm install --verbose
 
 ARG PHRASE_IMPORTANTE_BOT_TOKEN_ARG
 ENV PHRASE_IMPORTANTE_BOT_TOKEN=$PHRASE_IMPORTANTE_BOT_TOKEN_ARG
