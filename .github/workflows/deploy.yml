@@ -1,0 +1,39 @@
+name: deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      - run: npm install
+      - run: npm run build
+
+      - name: Restart Node Server
+        uses: appleboy/ssh-action@master
+        env:
+          PHRASE_IMPORTANTE_BOT_TOKEN: ${{ secrets.PHRASE_IMPORTANTE_BOT_TOKEN }}
+          GREETING_BOT_TOKEN: ${{ secrets.GREETING_BOT_TOKEN }}
+          B4_BAMBOU_GENERAL_CHANNEL_KEY: ${{ secrets.B4_BAMBOU_GENERAL_CHANNEL_KEY }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          envs: PHRASE_IMPORTANTE_BOT_TOKEN,GREETING_BOT_TOKEN,B4_BAMBOU_GENERAL_CHANNEL_KEY
+          script: |
+            cd projects/discord-bots
+            git pull #TODO
+            docker build -t discord-bots \
+            --build-arg PHRASE_IMPORTANTE_BOT_TOKEN_ARG=${PHRASE_IMPORTANTE_BOT_TOKEN} \
+            --build-arg GREETING_BOT_TOKEN_ARG=${GREETING_BOT_TOKEN} \
+            --build-arg B4_BAMBOU_GENERAL_CHANNEL_KEY_ARG=${B4_BAMBOU_GENERAL_CHANNEL_KEY} \
+            .
+            docker stop discord-bots
+            docker rm discord-bots
+            docker run -d -t --name discord-bots-container --expose 80 --net nginx-proxy discord-bots
