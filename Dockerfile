@@ -1,4 +1,4 @@
-FROM arm32v7/node:18-alpine
+FROM arm32v7/node:16-alpine
 
 ENV NPM_CONFIG_LOGLEVEL warn
 
