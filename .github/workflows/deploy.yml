@@ -27,7 +27,7 @@ jobs:
           envs: PHRASE_IMPORTANTE_BOT_TOKEN,GREETING_BOT_TOKEN,B4_BAMBOU_GENERAL_CHANNEL_KEY
           script: |
             cd projects/discord-bots
-            git pull
+            GIT_SSH_COMMAND='ssh -i ~/.ssh/git -o IdentitiesOnly=yes' git pull
             docker build -t discord-bots \
             --build-arg PHRASE_IMPORTANTE_BOT_TOKEN_ARG=${PHRASE_IMPORTANTE_BOT_TOKEN} \
             --build-arg GREETING_BOT_TOKEN_ARG=${GREETING_BOT_TOKEN} \
