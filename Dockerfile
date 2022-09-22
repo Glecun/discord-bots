@@ -11,11 +11,15 @@ ENV GREETING_BOT_TOKEN=$GREETING_BOT_TOKEN_ARG
 ARG B4_BAMBOU_GENERAL_CHANNEL_KEY_ARG
 ENV B4_BAMBOU_GENERAL_CHANNEL_KEY=$B4_BAMBOU_GENERAL_CHANNEL_KEY_ARG
 
+# Set the default command to run when a container starts
+CMD ["npm", "run", "start-raspberry"]
+
+# Install app dependencies
+COPY package.json .
+RUN apk --no-cache add build-base
+RUN apk add --no-cache python3 py3-pip
+RUN npm install
+
 # Copy all local files into the image.
 COPY . .
 
-RUN apk --no-cache add build-base
-RUN apk add --no-cache python3 py3-pip
-
-RUN npm install
-RUN npm run start-raspberry
