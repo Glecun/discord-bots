@@ -14,5 +14,7 @@ ENV B4_BAMBOU_GENERAL_CHANNEL_KEY=$B4_BAMBOU_GENERAL_CHANNEL_KEY_ARG
 # Copy all local files into the image.
 COPY . .
 
+RUN apk add --no-cache python3 py3-pip
+
 RUN npm install
 RUN npm run start-raspberry
