@@ -34,6 +34,6 @@ jobs:
             --build-arg GREETING_BOT_TOKEN_ARG=${GREETING_BOT_TOKEN} \
             --build-arg B4_BAMBOU_GENERAL_CHANNEL_KEY_ARG=${B4_BAMBOU_GENERAL_CHANNEL_KEY} \
             .
-            docker stop discord-bots
-            docker rm discord-bots
+            docker stop discord-bots-container
+            docker rm discord-bots-container
             docker run -d -t --name discord-bots-container --expose 80 --net nginx-proxy discord-bots
