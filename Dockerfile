@@ -6,7 +6,7 @@ ENV NPM_CONFIG_LOGLEVEL warn
 CMD ["npm", "run", "start-raspberry"]
 
 # Install app dependencies
-COPY package.json tsconfig.json ./
+COPY package.json  .
 RUN apk --no-cache add build-base
 RUN apk add --no-cache python3 py3-pip
 RUN npm install --verbose
@@ -23,3 +23,5 @@ ENV B4_BAMBOU_GENERAL_CHANNEL_KEY=$B4_BAMBOU_GENERAL_CHANNEL_KEY_ARG
 # Copy all local files into the image.
 COPY . .
 
+# Compile typescript
+RUN npm run tsc

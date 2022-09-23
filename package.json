@@ -16,7 +16,6 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "postinstall": "npm run tsc",
     "start-heroku": "node -r dotenv/config index.js;",
     "start-raspberry": "node index.js;",
     "start": "./node_modules/.bin/tsc; node -r dotenv/config index.js;"
