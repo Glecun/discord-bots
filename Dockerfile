@@ -6,7 +6,7 @@ ENV NPM_CONFIG_LOGLEVEL warn
 CMD ["npm", "run", "start-raspberry"]
 
 # Install app dependencies
-COPY package.json .
+COPY package.json tsconfig.json ./
 RUN apk --no-cache add build-base
 RUN apk add --no-cache python3 py3-pip
 RUN npm install --verbose
