@@ -36,4 +36,4 @@ jobs:
             .
             docker stop discord-bots-container
             docker rm discord-bots-container
-            docker run -d -t --name discord-bots-container --expose 80 --net nginx-proxy discord-bots
+            docker run -d -t --restart=always --name discord-bots-container --expose 80 --net nginx-proxy discord-bots
