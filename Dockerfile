@@ -2,6 +2,10 @@ FROM arm32v7/node:16-alpine
 
 ENV NPM_CONFIG_LOGLEVEL warn
 
+#Timezone
+RUN apk add --no-cache tzdata
+ENV TZ=Europe/Paris
+
 # Set the default command to run when a container starts
 CMD ["npm", "run", "start-prod"]
 
