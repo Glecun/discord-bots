@@ -11,6 +11,12 @@ client.on('ready', function () {
     const channel: TextChannel = await client.channels.fetch(process.env.B4_BAMBOU_GENERAL_CHANNEL_KEY!) as TextChannel;
     await channel.send("**Phrase du jour:** " + phrase);
   });
+
+  schedule.scheduleJob('0 8 * * *', async function () {
+    const contrepeterie = await fetch('http://contrepeteries-back.glecun-raspberry.duckdns.org/contrepeterie/of-the-day').then(response => response.text());
+    const channel: TextChannel = await client.channels.fetch(process.env.B4_BAMBOU_GENERAL_CHANNEL_KEY!) as TextChannel;
+    await channel.send("**Contrepèterie du jour:** " + contrepeterie);
+  });
 })
 
 client.on('messageCreate', async msg => {
